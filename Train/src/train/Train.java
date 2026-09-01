@@ -18,6 +18,7 @@ public class Train {
         Scanner sc = new Scanner(System.in);
         
         //load graph
+        loadGraphData();
         
         while(true){
             System.out.println("---------------------------------");
@@ -194,6 +195,18 @@ public class Train {
     private static void loadGraphData(){
         
         addEdge("Ampang Park", "KLCC");
+        addEdge("KLCC", "Kampung Baru");
+        addEdge("Kampung Baru", "Dang Wangi");
+        addEdge("Dang Wangi", "Masjid Jamek");
+        addEdge("Masjid Jamek", "Pasar Seni");
+        addEdge("Ampang Park", "Persiaran KLCC");
+        addEdge("Persiaran KLCC", "Conlay");
+        addEdge("Conlay", "TRX");
+        addEdge("TRX", "Cochrane");
+        addEdge("TRX", "Chan Sow Lin");
+        addEdge("Pasar Seni", "Merdeka");
+        addEdge("Merdeka", "Bukit Bintang");
+        addEdge("Bukit Bintang", "TRX");
     }
 }
 
