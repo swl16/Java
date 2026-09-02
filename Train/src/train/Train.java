@@ -118,7 +118,7 @@ public class Train {
                 case "4":
                     System.out.print("Enter 1st Station Name: ");
                     Station e1 = getStationByName(sc.nextLine().trim());
-                    System.out.print("Enter 1st Station Name: ");
+                    System.out.print("Enter 2nd Station Name: ");
                     Station e2 = getStationByName(sc.nextLine().trim());
                     
                     if(e1 != null && e2 != null){
