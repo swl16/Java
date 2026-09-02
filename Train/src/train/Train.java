@@ -97,22 +97,35 @@ public class Train {
                     break;
                     
                 case "3":
-                    System.out.print("Enter Start Index: ");
-                    int u = Integer.parseInt(sc.nextLine().trim());
-                    System.out.print("Enter End Index: ");
-                    int v = Integer.parseInt(sc.nextLine().trim());
-                    graph.addEdge(u, v);
-                    System.out.println("Connection added.");
+                    System.out.print("Enter 1st Station Name: ");
+                    Station s1 = getStationByName(sc.nextLine().trim());
+                    System.out.print("Enter 2nd Station Name: ");
+                    Station s2 = getStationByName(sc.nextLine().trim());
+                    
+                    if(s1 != null && s2 != null){
+                        int u = graph.getIndex(s1);
+                        int v = graph.getIndex(s2);
+                        graph.addEdge(u,v);
+                        System.out.println("Connection added.");
+                    }
                     break;
                     
                 case "4":
-                    System.out.print("Enter Start Index: ");
-                    int U = Integer.parseInt(sc.nextLine().trim());
-                    System.out.print("Enter End Index: ");
-                    int V = Integer.parseInt(sc.nextLine().trim());
-                    graph.removeEdge(U, V);
-                    graph.removeEdge(V, U);
-                    System.out.println("Connection removed.");
+                    System.out.print("Enter 1st Station Name: ");
+                    Station e1 = getStationByName(sc.nextLine().trim());
+                    System.out.print("Enter 1st Station Name: ");
+                    Station e2 = getStationByName(sc.nextLine().trim());
+                    
+                    if(e1 != null && e2 != null){
+                        int u = graph.getIndex(e1);
+                        int v = graph.getIndex(e2);
+                        graph.removeEdge(u,v);
+                        graph.removeEdge(v,u);
+                        System.out.println("Connection removed.");
+                    }else{
+                        System.out.println("One or both stations not found.");
+                    }
+                    
                     break;
                     
                 default:
