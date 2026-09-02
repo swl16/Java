@@ -61,7 +61,7 @@ public class Train {
     private static void graphMenu(Scanner sc){
         
         while(true){
-            System.out.println("1. Add a Station");
+            System.out.println("\n1. Add a Station");
             System.out.println("2. Remove a Station");
             System.out.println("3. Add a Connection");
             System.out.println("4. Remove a Connection");
@@ -79,9 +79,14 @@ public class Train {
                 case "1":
                     System.out.print("Enter station name: ");
                     String name = sc.nextLine().trim();
-                    Station newStation = new Station(name, (int)(Math.random()*600 + 50), (int)(Math.random()*300 + 50), Color.GRAY, false);
+                    // Prompt user for specific coordinates to avoid overlapping
+                    System.out.print("Enter X coordinate (e.g., 100-800): ");
+                    int x = Integer.parseInt(sc.nextLine().trim());
+                    System.out.print("Enter Y coordinate (e.g., 100-700): ");
+                    int y = Integer.parseInt(sc.nextLine().trim());
+                    Station newStation = new Station(name, x, y, Color.GRAY, false);
                     graph.addVertex(newStation); 
-                    System.out.println("Added.");
+                    System.out.println("\nAdded.");
                     break;
                     
                 case "2":
@@ -90,9 +95,9 @@ public class Train {
                     Station s = getStationByName(Name);
                     if(s != null){
                         graph.removeVertex(s); 
-                        System.out.println("Station '" + Name + "' removed.");
+                        System.out.println("\nStation '" + Name + "' removed.");
                     }else{
-                        System.out.println("Station not found.");
+                        System.out.println("\nStation not found.");
                     }
                     break;
                     
@@ -106,7 +111,7 @@ public class Train {
                         int u = graph.getIndex(s1);
                         int v = graph.getIndex(s2);
                         graph.addEdge(u,v);
-                        System.out.println("Connection added.");
+                        System.out.println("\nConnection added.");
                     }
                     break;
                     
@@ -121,15 +126,15 @@ public class Train {
                         int v = graph.getIndex(e2);
                         graph.removeEdge(u,v);
                         graph.removeEdge(v,u);
-                        System.out.println("Connection removed.");
+                        System.out.println("\nConnection removed.");
                     }else{
-                        System.out.println("One or both stations not found.");
+                        System.out.println("\nOne or both stations not found.");
                     }
                     
                     break;
                     
                 default:
-                    System.out.println("Invalid input. Please try again.");
+                    System.out.println("\nInvalid input. Please try again.");
             }
         }
     }
