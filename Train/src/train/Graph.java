@@ -28,7 +28,11 @@ public interface Graph<V> {
     
     public void addVertex(V vertex);
     
+    public void removeVertex(V vertex);
+    
     public void addEdge(int u, int v);
+    
+    public void removeEdge(int u, int v);
      
     public AbstractGraph<V>.Tree bfs(int v);
 }
