@@ -169,15 +169,35 @@ public abstract class AbstractGraph<V> implements Graph<V> {
     } else {
         return false;
     }*/
+
     public void addVertex(V vertex) {
         //if (!vertices.contains(vertex)) {
             vertices.add(vertex);
         //}
         neighbors.add(new ArrayList<Edge>());
         //return true;
-    } //else {
-      //  return false;
-    //}
+    }
+    
+    @Override
+    public void removeVertex(V vertex){
+        int index = getIndex(vertex);
+        if(index == -1) return;
+        
+        vertices.remove(index);
+        neighbors.remove(index);
+        
+        for(int i =0; i<neighbors.size(); i++){
+            List<Edge> list = neighbors.get(i);
+            
+            list.removeIf(e -> e.v == index);
+            
+            for(Edge e: list){
+                if(e.u > index) e.u--;
+                if(e.v > index) e.v--;
+            }
+        }
+    }
+    
 
     /**
      * Add an edge to the graph
@@ -198,6 +218,7 @@ public abstract class AbstractGraph<V> implements Graph<V> {
             return false;
         }
     }
+    
 
     @Override
     /**
@@ -208,6 +229,14 @@ public abstract class AbstractGraph<V> implements Graph<V> {
     }*/
     public void addEdge(int u, int v) {
         addEdge(new Edge(u, v));
+    }
+    
+    @Override
+    public void removeEdge(int u, int v){
+        if(u<0 || u>= getSize() || v<0 || v>= getSize()){
+            return;
+        }
+        neighbors.get(u).removeIf(e -> e.v == v);
     }
 
     /**
