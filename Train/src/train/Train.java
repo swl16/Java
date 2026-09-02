@@ -62,7 +62,9 @@ public class Train {
         
         while(true){
             System.out.println("1. Add a Station");
-            System.out.println("2. Add a Connection");
+            System.out.println("2. Remove a Station");
+            System.out.println("3. Add a Connection");
+            System.out.println("4. Remove a Connection");
             System.out.println("0. Return");
             System.out.println("-------------------------------");
             System.out.print("Enter your choice: ");
@@ -76,19 +78,41 @@ public class Train {
             switch(choice){
                 case "1":
                     System.out.print("Enter station name: ");
-                    String name = sc.nextLine();
+                    String name = sc.nextLine().trim();
                     Station newStation = new Station(name, (int)(Math.random()*600 + 50), (int)(Math.random()*300 + 50), Color.GRAY, false);
                     graph.addVertex(newStation); 
                     System.out.println("Added.");
                     break;
                     
                 case "2":
+                    System.out.print("Enter station name: ");
+                    String Name = sc.nextLine().trim();
+                    Station s = getStationByName(Name);
+                    if(s != null){
+                        graph.removeVertex(s); 
+                        System.out.println("Station '" + Name + "' removed.");
+                    }else{
+                        System.out.println("Station not found.");
+                    }
+                    break;
+                    
+                case "3":
                     System.out.print("Enter Start Index: ");
-                    int u = Integer.parseInt(sc.nextLine());
+                    int u = Integer.parseInt(sc.nextLine().trim());
                     System.out.print("Enter End Index: ");
-                    int v = Integer.parseInt(sc.nextLine());
+                    int v = Integer.parseInt(sc.nextLine().trim());
                     graph.addEdge(u, v);
                     System.out.println("Connection added.");
+                    break;
+                    
+                case "4":
+                    System.out.print("Enter Start Index: ");
+                    int U = Integer.parseInt(sc.nextLine().trim());
+                    System.out.print("Enter End Index: ");
+                    int V = Integer.parseInt(sc.nextLine().trim());
+                    graph.removeEdge(U, V);
+                    graph.removeEdge(V, U);
+                    System.out.println("Connection removed.");
                     break;
                     
                 default:
